@@ -19,7 +19,7 @@ pub mod solar_week;
 pub mod solar_year;
 pub mod tao;
 pub mod tao_festival;
-mod util;
+pub mod util;
 
 #[cfg(test)]
 #[path = "../tests/chinese_test.rs"]

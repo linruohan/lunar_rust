@@ -438,7 +438,10 @@ impl HolidayUtilRefHelper for HolidayUtilRef {
 }
 
 impl LockRef for HolidayUtilRef {
-  type Output<'a> = MutexGuard<'a, HolidayUtil,> where Self: 'a;
+  type Output<'a>
+    = MutexGuard<'a, HolidayUtil>
+  where
+    Self: 'a;
   fn as_locked_ref<'a>(&'a self) -> Self::Output<'a> {
     self.lock().unwrap()
   }

@@ -50,5 +50,39 @@ fn main() {
 ## 文档
 请移步至 https://6tail.cn/calendar/api.html
 
+## 节假日
+```rust
+use lunar_rust::{
+    holiday::{self, HolidayRefHelper},
+    lunar::{self, LunarRefHelper},
+    solar::{self, SolarRefHelper},
+    util::holiday_util::{self, HolidayUtilRefHelper},
+};
+fn main() {
+    let solar = solar::from_ymd(2025, 5, 5);
+    let lunar = solar.get_lunar();
+    // 初八
+    println!("今天的中文：{}", lunar.get_day_in_chinese());
+
+    println!("农历全部字符串：{}", lunar.to_full_string());
+    println!("--------");
+    println!("阳历全部字符串：{}", lunar.get_solar().to_full_string());
+    println!("--------");
+    let holiday = holiday_util::get()
+        .get_holiday(2025, Some(5), Some(5))
+        .unwrap();
+    println!("假日名字：{}", holiday.get_name());
+    println!("是否上班：{}", holiday.is_work());
+}
+初八
+二〇二五年四月初八 乙巳(蛇)年 辛巳(蛇)月 甲戌(狗)日 子(鼠)时 纳音[覆灯火 白蜡金 山头火 海中金] 星期一 [立夏] 东方青龙 星宿[心月狐](凶) 彭祖百忌[甲不开仓财物耗散 戌不吃犬作怪上床] 喜神方位[艮](东北) 阳贵神方 位[坤](西南) 阴贵神方位[艮](东北) 福神方位[坎](正北) 财神方位[艮](东北) 冲[(戊辰)龙] 煞[北]
+--------
+2025-05-05 00:00:00 星期一 (马克思诞辰纪念日) 金牛座
+--------
+劳动节
+false
+```
+
+
 ## Note:
 As this is just a port, I do not claim credit for any originality of the work.
